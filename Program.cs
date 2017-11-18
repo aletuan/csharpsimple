@@ -119,11 +119,24 @@ namespace csharpsimple
             Console.ReadKey();
             */
 
+            // Using thread pool to execute computation
+            /* 
             ThreadPool.QueueUserWorkItem((s) => {
                 Console.WriteLine("Working on a thread from thread pool");
             });
-
             Console.ReadLine();
+            */
+
+            // Using task schedule to control task (represent a computation)
+            // schedule take availble thread from pool to execute task
+            Task t = Task.Run(() => {
+                for (int i = 0; i < 100; i++)
+                {
+                    Console.WriteLine("*");
+                }
+            });
+            t.Wait();
+            
 
             // Using async
             /* 
