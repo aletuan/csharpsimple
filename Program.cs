@@ -110,11 +110,20 @@ namespace csharpsimple
             t.Join();
             */
 
+            // Each thread with separated copy of local variale
+            /* 
             Thread a = new Thread(new ThreadStart(ThreadMethod5));
             Thread b = new Thread(new ThreadStart(ThreadMethod5));
             a.Start();
             b.Start();
             Console.ReadKey();
+            */
+
+            ThreadPool.QueueUserWorkItem((s) => {
+                Console.WriteLine("Working on a thread from thread pool");
+            });
+
+            Console.ReadLine();
 
             // Using async
             /* 
