@@ -9,6 +9,10 @@ namespace csharpsimple
     {
         static bool stopped = false;
 
+        // using ThreadStatic variable to avoid sharing
+        [ThreadStatic]
+        static int _field;
+
         public static void ThreadMethod1()
         {
             for (int i = 0; i < 10; i++)
@@ -43,6 +47,15 @@ namespace csharpsimple
             {
                 Console.WriteLine("Running in thread...");
                 Thread.Sleep(1000);
+            }
+        }
+
+        public static void ThreadMethod5()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                _field++;
+                Console.WriteLine("Thread output value: {0}", _field);
             }
         }
 
@@ -87,6 +100,7 @@ namespace csharpsimple
             */
 
             // Stop a thread using shared variable
+            /*
             Thread t = new Thread(new ThreadStart(ThreadMethod4));
             t.Start();
             Console.WriteLine("Enter any key to stop thread");
@@ -94,6 +108,13 @@ namespace csharpsimple
 
             stopped = true;
             t.Join();
+            */
+
+            Thread a = new Thread(new ThreadStart(ThreadMethod5));
+            Thread b = new Thread(new ThreadStart(ThreadMethod5));
+            a.Start();
+            b.Start();
+            Console.ReadKey();
 
             // Using async
             /* 
