@@ -139,9 +139,13 @@ namespace csharpsimple
                 return i;
             });
 
-            Console.WriteLine(t.Result);
+            Task<int> k = t.ContinueWith((i) => {
+                return (100 * i.Result);
+            });
 
-            t.Wait();
+            Console.WriteLine(k.Result);
+
+            k.Wait();
             
 
             // Using async
