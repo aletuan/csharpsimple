@@ -1,0 +1,10 @@
+/Users/tuananhle/Documents/GitHub/csharpsimple/bin/Debug/netcoreapp2.0/csharpsimple.deps.json
+/Users/tuananhle/Documents/GitHub/csharpsimple/bin/Debug/netcoreapp2.0/csharpsimple.runtimeconfig.json
+/Users/tuananhle/Documents/GitHub/csharpsimple/bin/Debug/netcoreapp2.0/csharpsimple.runtimeconfig.dev.json
+/Users/tuananhle/Documents/GitHub/csharpsimple/bin/Debug/netcoreapp2.0/csharpsimple.dll
+/Users/tuananhle/Documents/GitHub/csharpsimple/bin/Debug/netcoreapp2.0/csharpsimple.pdb
+/Users/tuananhle/Documents/GitHub/csharpsimple/obj/Debug/netcoreapp2.0/csharpsimple.csproj.CoreCompileInputs.cache
+/Users/tuananhle/Documents/GitHub/csharpsimple/obj/Debug/netcoreapp2.0/csharpsimple.AssemblyInfoInputs.cache
+/Users/tuananhle/Documents/GitHub/csharpsimple/obj/Debug/netcoreapp2.0/csharpsimple.AssemblyInfo.cs
+/Users/tuananhle/Documents/GitHub/csharpsimple/obj/Debug/netcoreapp2.0/csharpsimple.dll
+/Users/tuananhle/Documents/GitHub/csharpsimple/obj/Debug/netcoreapp2.0/csharpsimple.pdb
