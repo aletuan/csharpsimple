@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace csharpsimple
 {
@@ -24,6 +26,16 @@ namespace csharpsimple
             }
         }
 
+        public static async Task<string> DownloadContent() 
+        {
+            using(HttpClient client = new HttpClient())
+            {
+                string result = await client.GetStringAsync("http://www.microsoft.com");
+                Console.WriteLine("From the asynchronous code");
+                return result;
+            }
+        }
+
         static void Main(string[] args)
         {
             /* 
@@ -40,9 +52,15 @@ namespace csharpsimple
             t.Join();
             */
 
+            /* 
             Thread t = new Thread(new ThreadStart(TheadMethod2));
             t.IsBackground = false;
             t.Start();
+            */
+
+            string result = DownloadContent().Result;
+            Console.WriteLine("From the main thread application");
+            Console.WriteLine(result);
         }
     }
 }
