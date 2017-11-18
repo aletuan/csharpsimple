@@ -26,6 +26,15 @@ namespace csharpsimple
             }
         }
 
+        public static void ThreadMethod3(object o)
+        {
+            for(int i = 0; i < (int)o; i++)
+            {
+                Console.WriteLine("ThreadProc: {0}", i);
+                Thread.Sleep(0);
+            }
+        }
+
         public static async Task<string> DownloadContent() 
         {
             using(HttpClient client = new HttpClient())
@@ -38,8 +47,8 @@ namespace csharpsimple
 
         static void Main(string[] args)
         {
-            /* 
             // Sample of starting multi-threading
+            /* 
             Thread t = new Thread(new ThreadStart(ThreadMethod1));
             t.Start();
 
@@ -52,15 +61,23 @@ namespace csharpsimple
             t.Join();
             */
 
+            // Setting background or foreground thread
             /* 
             Thread t = new Thread(new ThreadStart(TheadMethod2));
             t.IsBackground = false;
             t.Start();
             */
 
+            Thread t = new Thread(new ParameterizedThreadStart(ThreadMethod3));
+            t.Start(10);
+            t.Join();
+
+            // Using async
+            /* 
             string result = DownloadContent().Result;
             Console.WriteLine("From the main thread application");
             Console.WriteLine(result);
+            */
         }
     }
 }
