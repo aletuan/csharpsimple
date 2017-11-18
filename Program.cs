@@ -7,6 +7,8 @@ namespace csharpsimple
 {
     class Program
     {
+        static bool stopped = false;
+
         public static void ThreadMethod1()
         {
             for (int i = 0; i < 10; i++)
@@ -32,6 +34,15 @@ namespace csharpsimple
             {
                 Console.WriteLine("ThreadProc: {0}", i);
                 Thread.Sleep(0);
+            }
+        }
+
+        public static void ThreadMethod4() 
+        {
+            while(!stopped) 
+            {
+                Console.WriteLine("Running in thread...");
+                Thread.Sleep(1000);
             }
         }
 
@@ -68,8 +79,20 @@ namespace csharpsimple
             t.Start();
             */
 
+            // Sending data to thread
+            /* 
             Thread t = new Thread(new ParameterizedThreadStart(ThreadMethod3));
             t.Start(10);
+            t.Join();
+            */
+
+            // Stop a thread using shared variable
+            Thread t = new Thread(new ThreadStart(ThreadMethod4));
+            t.Start();
+            Console.WriteLine("Enter any key to stop thread");
+            Console.ReadKey();
+
+            stopped = true;
             t.Join();
 
             // Using async
