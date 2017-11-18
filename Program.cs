@@ -129,12 +129,18 @@ namespace csharpsimple
 
             // Using task schedule to control task (represent a computation)
             // schedule take availble thread from pool to execute task
-            Task t = Task.Run(() => {
-                for (int i = 0; i < 100; i++)
+            Task<int> t = Task.Run(() => {
+                int i = 0;
+                for (; i < 100; i++)
                 {
                     Console.WriteLine("*");
                 }
+
+                return i;
             });
+
+            Console.WriteLine(t.Result);
+
             t.Wait();
             
 
