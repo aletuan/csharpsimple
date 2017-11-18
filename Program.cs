@@ -129,6 +129,7 @@ namespace csharpsimple
 
             // Using task schedule to control task (represent a computation)
             // schedule take availble thread from pool to execute task
+            /* 
             Task<int> t = Task.Run(() => {
                 int i = 0;
                 for (; i < 100; i++)
@@ -146,6 +147,37 @@ namespace csharpsimple
             Console.WriteLine(k.Result);
 
             k.Wait();
+            */
+
+            // Break task into small child task
+            Task<Int32[]> parent = Task.Run(() => {
+                var results = new Int32[3];
+
+                new Task(() => {
+                    results[0] = 0;
+                }, TaskCreationOptions.AttachedToParent).Start();
+
+                new Task(() => {
+                    results[1] = 1;
+                }, TaskCreationOptions.AttachedToParent).Start();
+
+                new Task(() => {
+                    results[2] = 2;
+                }, TaskCreationOptions.AttachedToParent).Start();
+
+                return results;
+            });
+
+            var final = parent.ContinueWith(
+                parentTask => {
+                    foreach(int i in parentTask.Result)
+                    {
+                        Console.WriteLine(i);
+                    }
+                }
+            );
+
+            final.Wait();
             
 
             // Using async
