@@ -150,6 +150,7 @@ namespace csharpsimple
             */
 
             // Break task into small child task
+            /* 
             Task<Int32[]> parent = Task.Run(() => {
                 var results = new Int32[3];
 
@@ -165,6 +166,18 @@ namespace csharpsimple
                     results[2] = 2;
                 }, TaskCreationOptions.AttachedToParent).Start();
 
+                return results;
+            });
+            */
+
+            // can use with task factory instead
+            Task<Int32[]> parent = Task.Run(() =>
+            {
+                var results = new Int32[3];
+                TaskFactory tf = new TaskFactory(TaskCreationOptions.AttachedToParent, TaskContinuationOptions.ExecuteSynchronously);
+                tf.StartNew(() => results[0] = 0);
+                tf.StartNew(() => results[1] = 1);
+                tf.StartNew(() => results[2] = 2);
                 return results;
             });
 
